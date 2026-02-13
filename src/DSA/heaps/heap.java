@@ -45,6 +45,33 @@ class MaxHeap{
 
         }
     }
+    public void heapify2(int index,int size){
+
+        while(index < size){
+            int largest = index;
+            int leftChildIndex = 2 * index + 1;
+            int rightChildIndex = 2 * index + 2;
+            if(leftChildIndex<size && heap.get(leftChildIndex)>heap.get(largest)){
+                largest = leftChildIndex;
+            }
+            if(rightChildIndex<size && heap.get(rightChildIndex)>heap.get(largest)){
+                largest = rightChildIndex;
+            }
+            if(largest!=index){
+                Collections.swap(heap,index,largest);
+                index = largest;
+            }else{
+                break;
+            }
+
+        }
+    }
+    public void sort(){
+        for(int i =heap.size()-1;i>=0;i--){
+            Collections.swap(heap,0,i);
+            heapify2(0,i);
+        }
+    }
     public void insert(int val){
         heap.add(val);
         int size = heap.size()-1;
@@ -86,6 +113,10 @@ public class heap {
 //        System.out.println(mh.peek());
 //        System.out.println(mh.pop());
         MaxHeap mh1 = new MaxHeap(new int[]{2,34,234,1345,654,345});
+        mh1.print();
+        mh1.sort();
+        System.out.println("");
+        System.out.println("After Sorting:");
         mh1.print();
 
 
